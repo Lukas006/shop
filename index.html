@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Fortnite Item Shop</title>
+
+    <!-- PWA / iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FN Shop">
+    <link rel="apple-touch-icon" href="https://fortnite-api.com/assets/fnhit.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://fortnite-api.com/images/vbuck.png" alt="FN Shop">
+                    <h1>SHOP</h1>
+                </div>
+                <div id="countdown" class="countdown">
+                    <span class="label">RESET IN</span>
+                    <span id="timer" class="timer">00:00:00</span>
+                </div>
+            </div>
+            <div id="shop-date" class="shop-date">...</div>
+
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search items..." autocomplete="off">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <div class="filters-container">
+                    <div class="filters-scroll">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="new">New</button>
+                        <button class="filter-btn" data-filter="wishlist">My Wishlist</button>
+                        <button class="filter-btn" data-filter="different">Different</button>
+                        <button class="filter-btn" data-filter="leaving">Leaving</button>
+                        <button class="filter-btn" data-filter="longest">Longest Wait</button>
+                        <button class="filter-btn" data-filter="best">Best Sellers</button>
+                    </div>
+                </div>
+        </header>
+
+        <main id="shop-container">
+            <div class="loader-container">
+                <div class="loader"></div>
+                <p>Fetching Loot...</p>
+            </div>
+        </main>
+
+        <!-- Item Details Modal -->
+        <div id="item-modal" class="details-modal">
+            <div class="modal-overlay" onclick="closeModal()"></div>
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <div id="modal-body">
+                    <!-- Data injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Search / Add to Wishlist Modal -->
+        <div id="search-modal" class="details-modal">
+            <div class="modal-overlay" onclick="closeSearchModal()"></div>
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeSearchModal()">&times;</button>
+                <div class="modal-info">
+                    <h2 class="modal-title">Add to Wishlist</h2>
+                    <p class="modal-description">Search for any Fortnite item to follow it.</p>
+                    <div class="search-container" style="padding: 0; margin-bottom: 20px;">
+                        <input type="text" id="global-search-input" placeholder="Search all items..."
+                            autocomplete="off">
+                    </div>
+                    <div id="global-search-results" class="global-results-grid">
+                        <!-- Results injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iOS Install Prompt -->
+        <div id="ios-prompt" class="ios-prompt hidden">
+            <div class="prompt-content">
+                <p>Install <strong>FN Shop</strong> on your home screen for the best experience!</p>
+                <div class="prompt-steps">
+                    <span>Tap the Share icon <img src="https://img.icons8.com/ios/50/ffffff/share.png" width="20">
+                        below</span>
+                    <span>Then tap <strong>'Add to Home Screen'</strong> <img
+                            src="https://img.icons8.com/ios/50/ffffff/plus.png" width="20"></span>
+                </div>
+                <button id="close-prompt">Got it!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
